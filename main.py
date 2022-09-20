@@ -9,12 +9,14 @@ def on_message(client, userdata, msg):
 	#print(msg.payload.decode("utf-8"))
 	#print(msg.payload[0])
 
-	while True:
-		if msg.payload[0] == 46:
-			print("inside if")
+	if msg.payload[0] == 46:
+		print("inside 46")
 	#		f = open("/sys/class/leds/led0/brightness", "w")
 	#		f.write("1")
 	#		f.close()
+	elif msg.payload[0] == 95:
+			print("inside 95")
+
 client = mqtt.Client("jonny_pi_sub") # client ID "mqtt-test"
 client.on_connect = on_connect
 client.on_message = on_message
@@ -26,3 +28,4 @@ client.loop_forever()  # Start networking daemon
 f = open("/sys/class/leds/led0/brightness", "w")
 f.write("0")
 f.close()
+
