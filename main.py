@@ -1,3 +1,28 @@
+import paho.mqtt.client as mqtt
+def on_connect(client, userdata, flags, rc):
+	# This will be called once the client connects
+	print(f"Connected with result code {rc}")
+	# Subscribe here!
+	client.subscribe("morse")
+def on_message(client, userdata, msg):
+	#print(f"Message received [{msg.topic}]: {msg.payload}")
+	#print(msg.payload.decode("utf-8"))
+	#print(msg.payload[0])
+
+	while True:
+		if msg.payload[0] == 46:
+			print("inside if")
+	#		f = open("/sys/class/leds/led0/brightness", "w")
+	#		f.write("1")
+	#		f.close()
+client = mqtt.Client("jonny_pi_sub") # client ID "mqtt-test"
+client.on_connect = on_connect
+client.on_message = on_message
+#client.username_pw_set("myusername", "aeNg8aibai0oiloo7xiad1iaju1uch")
+client.connect('35.228.72.67', 1883)
+client.loop_forever()  # Start networking daemon
+
+
 f = open("/sys/class/leds/led0/brightness", "w")
-f.write("1")
+f.write("0")
 f.close()
