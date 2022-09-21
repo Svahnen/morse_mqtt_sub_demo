@@ -35,7 +35,7 @@ def on_message(client, userdata, msg):
         f.close()
 
 
-client = mqtt.Client("jonny_pi_sub")  # client ID
+client = mqtt.Client()  # Anonemous client ID
 client.on_connect = on_connect  # Set the on_connect callback
 client.on_message = on_message  # Set the on_message callback
 client.connect('35.228.72.67', 1883)
